@@ -159,7 +159,7 @@ class Character {
 	input.style.visibility="hidden";
 
     // Display the win message
-    displayText.innerHTML = `You defeted main threat in the city and folllowers of Pure Worship has been scattered! You win! <button onclick="location.href='index.html'">Return to Menu</button>`;
+    displayText.innerHTML = `You defeted main threat in the city and folllowers of Pure Worship has been scattered! You win! <button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
   }
 
 takeDamage(amount) {
