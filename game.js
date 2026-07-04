@@ -148,6 +148,7 @@ class Character {
     const option3 = document.getElementById("option3");
     const option4 = document.getElementById("option4");
     const health = document.getElementById("health");
+	const input = document.getElementById("health");
     // Clear the options
     optionTitle.innerHTML = "";
     option1.innerHTML = "";
@@ -155,6 +156,7 @@ class Character {
     option3.innerHTML = "";
     option4.innerHTML = "";
     health.innerHTML = "";
+	input.style.visibility="hidden";
 
     // Display the win message
     displayText.innerHTML = `You defeted main threat in the city and folllowers of Pure Worship has been scattered! You win! <button onclick="location.href='index.html'">Return to Menu</button>`;
