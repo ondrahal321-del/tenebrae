@@ -1,0 +1,275 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+body{
+     background:#000000;
+    color:#FFFFFF;
+    font-family:Georgia, serif;
+    display:flex;
+    height: 100vh;
+    justify-content:center;
+    padding:30px;
+    background-image: url("tapeta.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container{
+    margin-top:30px;
+    width:900px;
+}
+
+.containeri{
+    margin-top:30px;
+    width:900px;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //align-items: center;
+  width:600px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+    color:#FFFFFF;
+    letter-spacing:2px;
+}
+
+.logo{
+  font: 110px 'Cinzel Decorative';
+    text-align: center;
+    color: white;
+    text-shadow: 0 10px 20px var(#BFBFBF);
+    margin-bottom: 40px;
+}
+
+h2{
+    margin-bottom:15px;
+    color:#BFBFBF;
+}
+
+.panel{
+    background:#171717;
+    border:2px solid #454545;
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.panelMenu{
+    background:#171717;
+    border:2px solid #454545;
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:20px;
+    justify-content: center;
+  align-items: center;
+text-align: center;
+}
+
+label{
+
+    display:block;
+    margin-top:12px;
+    margin-bottom:6px;
+}
+
+.labelMenu{
+    display:block;
+    margin-top:12px;
+    margin-bottom:30px;
+    font-size: 30px;
+}
+
+input[type=text], select{
+    width:100%;
+    padding:10px;
+    background:#000000;
+    color:#FFFFFF;
+    border:1px solid #454545;
+    border-radius:6px;
+    margin-bottom:10px;
+}
+
+button{
+
+    cursor:pointer;
+    background:#454545;
+    color:white;
+    border:none;
+    border-radius:6px;
+    padding:8px 14px;
+    transition:.2s;
+}
+
+button:hover{
+    background:#808080;
+}
+
+
+#buttonMenu{
+  justify-content: center;
+  //align-items: center;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#attributes{
+    margin-top:20px;
+}
+
+.stat{
+    display:grid;
+    grid-template-columns:
+        170px
+        40px
+        60px
+        40px;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.stat span{
+    font-size:18px;
+}
+
+.plus, .minus{
+    width:35px;
+    height:35px;
+    font-size:18px;
+}
+
+#points{
+    color:#F2F2F2;
+    font-weight:bold;
+}
+
+#health{
+    margin-bottom: 10px;
+    color: red;
+}
+
+input[type=checkbox]{
+    margin-right:10px;
+}
+
+pre{
+    white-space:pre-wrap;
+    background:#454545;
+    border:1px solid #000000;
+    padding:15px;
+    border-radius:8px;
+    line-height:1.5;
+}
+
+#create{
+    background:#3f7a2d;
+}
+
+#create:hover{
+    background:#58a63e;
+}
+
+#reset{
+    background:#993737;
+}
+
+#reset:hover{
+    background:#bf4747;
+}
+
+#randomCharacter{
+    background:#255c88;
+}
+
+#randomCharacter:hover{
+    background:#347cb5;
+}
+
+#randomName{
+    width:100%;
+    margin-bottom:15px;
+}
+
+.panel p{
+    margin-bottom:8px;
+}
+
+#gamearea {
+	font-size:18px;
+     background:#171717;
+    border:2px solid #454545;
+    border-radius:10px;
+    padding: 70px;
+    margin-bottom:30px;
+
+}
+
+.options-container {
+  font-size:16px;
+  margin-bottom: 3.5rem;
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.option-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.game-response {
+  font-style: italic;
+    font-size:16px;
+  margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.user-input {
+  border: white 1px solid;
+}
+
+input:focus {
+  outline: none;
+  border-color: white; 
+  box-shadow: 0 0 1px white; 
+}
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#454545;
+}
+
+@media(max-width:850px){
+
+    .container, .containeri, .menu{
+        width:100%;
+    }
+    .stat{
+        grid-template-columns:
+        120px
+        40px
+        50px
+        40px;
+    }
+  .logo{
+        font-size: 60px;
+}
+}
