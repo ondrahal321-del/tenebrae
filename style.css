@@ -60,7 +60,7 @@ h2{
     color:#BFBFBF;
 }
 
-.panel{
+.panel:not(.panelMenu){
     background:#171717;
     border:2px solid #454545;
     border-radius:10px;
