@@ -148,7 +148,7 @@ class Character {
     const option3 = document.getElementById("option3");
     const option4 = document.getElementById("option4");
     const health = document.getElementById("health");
-	const input = document.getElementById("health");
+	const input = document.getElementById("userInput");
     // Clear the options
     optionTitle.innerHTML = "";
     option1.innerHTML = "";
