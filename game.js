@@ -121,11 +121,23 @@ class Room {
 
 //////////////////////// CHARACTER CLASS ////////////////////////
 class Character {
-  constructor(name, health, inventory) {
-    this._name = name;
-    this._health = health;
-    this._inventory = inventory;
-  }
+      constructor(name, health, armor, inventory) {
+        this._name = name;
+        this._health = health;
+        this._armor = armor;
+        this._inventory = inventory;
+    }
+
+    getWeaponDamage() {
+        let highest = 5; // fists
+
+        this._inventory.forEach(item => {
+            if (item.damage > highest)
+                highest = item.damage;
+        });
+
+        return highest;
+    }
 
 
   addItem(game, item) {
@@ -133,11 +145,42 @@ class Character {
     game.setResponse(`You picked up ${item.name}.`)
   }
 
-  fight(game, enemy) {
-    this.takeDamage(enemy.damage);
+fight(game, enemy) {
+
+    let playerDamage =
+        Math.max(
+            1,
+            this.getWeaponDamage() - enemy._armor
+        );
+
+    enemy._health -= playerDamage;
+
+    if(enemy._health <= 0){
+
+        game.setResponse(
+            `You killed ${enemy._name}!`
+        );
+
+        return;
+    }
+
+    let enemyDamage =
+        Math.max(
+            1,
+            enemy._damage - this._armor
+        );
+
+    this._health -= enemyDamage;
+
     game.setResponse(
-        `You defeated ${enemy.name}, but lost ${enemy.damage} HP.`
+        `You dealt ${playerDamage} damage.
+        ${enemy._name} dealt ${enemyDamage}.
+        
+        HP:
+        You ${this._health}
+        Enemy ${enemy._health}`
     );
+
 }
 
   winGame() {
@@ -162,13 +205,23 @@ class Character {
     displayText.innerHTML = `<h3>You win</h3>You defeated main threat in the city and folllowers of Pure Worship has been scattered. But remember: There are many threats still hidden...  <button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
   }
 
-takeDamage(amount) {
-    this._health -= amount;
+takeDamage(amount, armor) {
+    let damageTaken =
+    enemy._damage - this._armor;
+
+if (damageTaken < 1)
+    damageTaken = 1;
+
+this._health -= damageTaken;
 
     if (this._health <= 0) {
         this._health = 0;
         this.loseGame();
     }
+}
+
+takeArmor(armor) {
+	player._armor += 5;
 }
 
 loseGame() {
@@ -207,11 +260,13 @@ heal(game, amount) {
 
 //////////////////////// ENEMY CLASS ////////////////////////
 class Enemy {
-  constructor(name, description, dialogue, damage) {
+  constructor(name, description, dialogue, damage, health, armor) {
     this._name = name;
     this._description = description;
     this._dialogue = dialogue;
     this._damage = damage;
+	this._health = health;
+	this._damage = armor;
   }
 
   get name() {
@@ -231,31 +286,41 @@ class Enemy {
     }
 }
 
+takeDamage(amount, armor) {
+let damageGiven =
+    this.getWeaponDamage() - enemy._armor;
+
+if (damageGiven < 1)
+    damageGiven = 1;
+
+enemy._health -= damageGiven;
+}
 //////////////////////// ITEM CLASS ////////////////////////
 class Item {
   constructor(name) {
     this.name = name;
+	this.damage = damage;
   }
 }
 
 
 
 //////////////////////// ENEMIES ////////////////////////
-const follower = new Enemy('a cult follower', 'a follower of Pure Worship shambling around the room', '', 10);
-const drone = new Enemy('an drone', 'an drone whizzing around the room, sent by unknown person or faction', '', 20);
-const shaman = new Enemy('an shaman', 'an shaman of Pure Worship mixing potions, unaware of your presence', '', 20);
-const scavenger = new Enemy('a scavenger', 'a scavenger feasting on a corpse in the corner', '', 10);
-const gangMember = new Enemy('a gang member', 'a gang member armed with a knife and tattoed symbol of Syndicete', '', 10);
-const reverentFather = new Enemy('Reverent Father', 'Reverent Father sitting on the throne, scratching at the floor with a staff seemingly fused to his hand', '', 50);
+const follower = new Enemy('a cult follower', 'a follower of Pure Worship shambling around the room', '', 10, 30, 1);
+const drone = new Enemy('an drone', 'an drone whizzing around the room, sent by unknown person or faction', '', 20, 50, 5);
+const shaman = new Enemy('an shaman', 'an shaman of Pure Worship mixing potions, unaware of your presence', '', 20, 40, 3);
+const scavenger = new Enemy('a scavenger', 'a scavenger feasting on a corpse in the corner', '', 10, 30, 2);
+const gangMember = new Enemy('a gang member', 'a gang member armed with a knife and tattoed symbol of Syndicete', '', 10, 40, 4);
+const reverentFather = new Enemy('Reverent Father', 'Reverent Father sitting on the throne, scratching at the floor with a staff seemingly fused to his hand', '', 50, 80, 8);
 
 
 //////////////////////// ITEMS ////////////////////////
-const crowbar = new Item("a rusty crowbar");
-const flashlight = new Item("a working flashlight");
-const firstAidKit = new Item("a first aid kit");
-const rifle = new Item("a rifle AK-47");
-const gasMask = new Item("a gas mask");
-const gun = new Item("an old gun");
+const crowbar = new Item("a rusty crowbar", 20);
+const flashlight = new Item("a working flashlight", 2);
+const firstAidKit = new Item("a first aid kit", 0);
+const rifle = new Item("a rifle AK-47", 50);
+const gasMask = new Item("a gas mask", 0);
+const gun = new Item("an old gun", 30);
 
 //////////////////////// ROOMS ////////////////////////
 
@@ -564,7 +629,7 @@ const option2 = document.getElementById("option2");
 const option3 = document.getElementById("option3");
 const option4 = document.getElementById("option4");
 
-let player = new Character('Player Name', 100, []);
+let player = new Character('Player Name', 100, 5, []);
 let game = new Game(player, allRooms);
 
 
