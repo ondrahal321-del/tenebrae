@@ -154,7 +154,7 @@ button:hover{
 #health{
     margin-bottom: 10px;
 	margin-right: 30px;
-    color: red;
+    color: green;
 }
 
 #stats-contain{
@@ -164,7 +164,7 @@ button:hover{
 #damage{
     margin-bottom: 10px;
 	margin-right: 30px;
-    color: white;
+    color: red;
 }
 
 #armor{
