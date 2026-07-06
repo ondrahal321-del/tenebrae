@@ -127,9 +127,10 @@ class Room {
 
 //////////////////////// CHARACTER CLASS ////////////////////////
 class Character {
-      constructor(name, health, armor, inventory) {
+      constructor(name, health, damage, armor, inventory) {
         this._name = name;
         this._health = health;
+		this._damage = damage;
         this._armor = armor;
         this._inventory = inventory;
     }
@@ -157,7 +158,7 @@ fight(game, enemy) {
     Math.max(
         1,
         this.getWeaponDamage() +
-        40 -
+        this._damage -
         enemy._armor
     );
 
@@ -670,7 +671,7 @@ const option2 = document.getElementById("option2");
 const option3 = document.getElementById("option3");
 const option4 = document.getElementById("option4");
 
-let player = new Character('Player', 100, 5, []);
+let player = new Character('Player', 100, 40, 5, []);
 let game = new Game(player, allRooms);
 
 
