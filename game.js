@@ -159,7 +159,7 @@ class Character {
 	input.style.visibility="hidden";
 
     // Display the win message
-    displayText.innerHTML = `You defeated main threat in the city and folllowers of Pure Worship has been scattered! You win! <button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
+    displayText.innerHTML = `<h3>You win</h3>You defeated main threat in the city and folllowers of Pure Worship has been scattered. But remember: There are many threats still hidden...  <button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
   }
 
 takeDamage(amount) {
@@ -190,7 +190,7 @@ loseGame() {
 	input.style.visibility="hidden";
 
     // Display the win message
-    displayText.innerHTML = `You didn´t defeated main threat in the city and folllowers of Pure Worship has been spreaded! You lost! <button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
+    displayText.innerHTML = `<h3>You died</h3><button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
 }
 
 heal(game, amount) {
