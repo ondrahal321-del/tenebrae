@@ -117,6 +117,10 @@ class Room {
     }
   }
 
+	removeEnemy(enemy) {
+    this._enemies = this._enemies.filter(e => e !== enemy);
+}
+
 }
 
 //////////////////////// CHARACTER CLASS ////////////////////////
@@ -147,11 +151,13 @@ class Character {
 
 fight(game, enemy) {
 
-    let playerDamage =
-        Math.max(
-            1,
-            this.getWeaponDamage() - enemy._armor
-        );
+    const playerDamage =
+    Math.max(
+        1,
+        this.getWeaponDamage() +
+        Math.floor(Math.random() * 5) -
+        enemy._armor
+    );
 
     enemy._health -= playerDamage;
 
@@ -247,13 +253,12 @@ loseGame() {
 }
 
 heal(game, amount) {
-    const previousHealth = this._health;
+    const oldHealth = this._health;
+    this._health = Math.min(100, this._health + amount);
 
-    this._health = Math.min(this._health + amount, 100);
-
-    const healed = this._health - previousHealth;
-
-    game.setResponse(`You recovered ${healed} HP. Current health: ${this._health}`);
+    game.setResponse(
+        `Recovered ${this._health - oldHealth} HP.`
+    );
 }
 
 }
@@ -642,7 +647,7 @@ function updateUI() {
     let roomEnemy = game.currentRoom.returnEnemy();
 
     displayText.innerHTML = `You are in ${roomName}. ${roomDescription} You see ${roomItems}. There is ${roomEnemy.description}.`;
-    document.getElementById("health").innerHTML = "Health: " + player._health;
+    document.getElementById("health").textContent = `Health: ${player._health}/100`;
   }
   displayRoom();
 
