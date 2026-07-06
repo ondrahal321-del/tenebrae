@@ -184,8 +184,8 @@ fight(game, enemy) {
     this._health -= enemyDamage;
 
     game.setResponse(
-        `You dealt ${playerDamage} damage.
-        ${enemy._name} dealt ${enemyDamage}.
+        `You dealt ${playerDamage} damage,
+        ${enemy._name} dealt ${enemyDamage}.<br>
         
         HP:
         You ${this._health}
@@ -359,7 +359,7 @@ zabrheh.addPlayerOptions([
         input:4,
         text:"Check inventory",
         action:(game)=>{
-			let inventoryText = "Inventory:<br><br>";
+			let inventoryText = "Inventory:<br>";
             if (player._inventory.length === 0) {
                 game.setResponse("Your inventory is empty.");
             } 
@@ -398,7 +398,7 @@ vitkovice.addPlayerOptions([
         input:5,
         text:"Check inventory",
         action:(game)=>{
-			let inventoryText = "Inventory:<br><br>";
+			let inventoryText = "Inventory:<br>";
             if (player._inventory.length === 0) {
                 game.setResponse("Your inventory is empty.");
             } 
@@ -445,7 +445,7 @@ privoz.addPlayerOptions([
         input:5,
         text:"Check inventory",
         action:(game)=>{
-			let inventoryText = "Inventory:<br><br>";
+			let inventoryText = "Inventory:<br>";
             if (player._inventory.length === 0) {
                 game.setResponse("Your inventory is empty.");
             } 
@@ -491,7 +491,7 @@ karolina.addPlayerOptions([
         input:5,
         text:"Check inventory",
         action:(game)=>{
-			let inventoryText = "Inventory:<br><br>";
+			let inventoryText = "Inventory:<br>";
             if (player._inventory.length === 0) {
                 game.setResponse("Your inventory is empty.");
             } 
@@ -534,7 +534,7 @@ svinov.addPlayerOptions([
                 game.setResponse("Your inventory is empty.");
             } 
             else {
-				let inventoryText = "Inventory:<br><br>";
+				let inventoryText = "Inventory:<br>";
                  player._inventory.forEach(item => {
         inventoryText += `${item.name}`;
         if (item.damage > 0) inventoryText += ` (Damage: ${item.damage})`;
@@ -574,7 +574,7 @@ dolni.addPlayerOptions([
                 game.setResponse("Your inventory is empty.");
             } 
             else {
-				let inventoryText = "Inventory:<br><br>";
+				let inventoryText = "Inventory:<br>";
                  player._inventory.forEach(item => {
         inventoryText += `${item.name}`;
         if (item.damage > 0) inventoryText += ` (Damage: ${item.damage})`;
@@ -616,7 +616,7 @@ stodolni.addPlayerOptions([
         input:4,
         text:"Check inventory",
         action:(game)=>{
-			let inventoryText = "Inventory:<br><br>";
+			let inventoryText = "Inventory:<br>";
             if (player._inventory.length === 0) {
                 game.setResponse("Your inventory is empty.");
             } 
