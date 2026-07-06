@@ -297,7 +297,7 @@ class Enemy {
 }
 //////////////////////// ITEM CLASS ////////////////////////
 class Item {
-  constructor(name) {
+  constructor(name, damage) {
     this.name = name;
 	this.damage = damage;
   }
