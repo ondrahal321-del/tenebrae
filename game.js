@@ -159,7 +159,7 @@ class Character {
 	input.style.visibility="hidden";
 
     // Display the win message
-    displayText.innerHTML = `You defeted main threat in the city and folllowers of Pure Worship has been scattered! You win! <button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
+    displayText.innerHTML = `You defeated main threat in the city and folllowers of Pure Worship has been scattered! You win! <button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
   }
 
 takeDamage(amount) {
@@ -172,9 +172,25 @@ takeDamage(amount) {
 }
 
 loseGame() {
-    alert("You died!");
+    const displayText = document.getElementById("displaytext");
+    const optionTitle = document.getElementById("options");
+    const option1 = document.getElementById("option1");
+    const option2 = document.getElementById("option2");
+    const option3 = document.getElementById("option3");
+    const option4 = document.getElementById("option4");
+    const health = document.getElementById("health");
+	const input = document.getElementById("userInput");
+    // Clear the options
+    optionTitle.innerHTML = "";
+    option1.innerHTML = "";
+    option2.innerHTML = "";
+    option3.innerHTML = "";
+    option4.innerHTML = "";
+    health.innerHTML = "";
+	input.style.visibility="hidden";
 
-    location.reload();
+    // Display the win message
+    displayText.innerHTML = `You didn´t defeated main threat in the city and folllowers of Pure Worship has been spreaded! You lost! <button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
 }
 
 heal(game, amount) {
