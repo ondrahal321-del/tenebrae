@@ -291,14 +291,10 @@ class Enemy {
     }
 }
 
-takeDamage(amount, armor) {
-let damageGiven =
-    this.getWeaponDamage() - enemy._armor;
-
-if (damageGiven < 1)
-    damageGiven = 1;
-
-enemy._health -= damageGiven;
+    takeDamage(enemy) {
+    let damage = Math.max(1, enemy.damage - this._armor);
+    this._health -= damage;
+}
 }
 //////////////////////// ITEM CLASS ////////////////////////
 class Item {
@@ -644,9 +640,20 @@ function updateUI() {
     let roomName = game.currentRoom.returnName();
     let roomDescription = game.currentRoom.returnDescription();
     let roomItems = game.currentRoom.returnItems();
-    let roomEnemy = game.currentRoom.returnEnemy();
+let roomEnemy = game.currentRoom.returnEnemy();
 
-    displayText.innerHTML = `You are in ${roomName}. ${roomDescription} You see ${roomItems}. There is ${roomEnemy.description}.`;
+let enemyText = "";
+
+if (roomEnemy) {
+    enemyText = `There is ${roomEnemy.description}.`;
+} else {
+    enemyText = "The area seems quiet.";
+}
+
+displayText.innerHTML =
+`You are in ${roomName}. ${roomDescription}
+ You see ${roomItems}.
+ ${enemyText}`;
     document.getElementById("health").textContent = `Health: ${player._health}/100`;
   }
   displayRoom();
