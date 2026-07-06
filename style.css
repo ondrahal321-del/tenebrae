@@ -156,16 +156,18 @@ button:hover{
     color: red;
 }
 
+#stats-contain{
+	display: flex
+}
+
 #damage{
     margin-bottom: 10px;
     color: white;
-	float: right;
 }
 
 #armor{
     margin-bottom: 10px;
     color: blue;
-	float: right;
 }
 
 input[type=checkbox]{
