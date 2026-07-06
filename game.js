@@ -289,7 +289,6 @@ class Enemy {
  get damage() {
         return this._damage;
     }
-}
 
     takeDamage(enemy) {
     let damage = Math.max(1, enemy.damage - this._armor);
