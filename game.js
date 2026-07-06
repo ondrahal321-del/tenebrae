@@ -6,26 +6,28 @@ class Game {
     this._currentRoom = this._rooms[startingRoomIndex];
   }
 
-  moveToRoom(direction) {
-    const newRoom = this._currentRoom[`_room${direction.charAt(0).toUpperCase() + direction.slice(1)}`];
+moveToRoom(direction) {
+
+    const newRoom =
+        this._currentRoom[`_room${direction.charAt(0).toUpperCase() + direction.slice(1)}`];
     if (newRoom) {
-      this._currentRoom = newRoom;
-      newRoom.enter();
+        this.clearResponse();
+        this._currentRoom = newRoom;
+        newRoom.enter();
     } else {
-      console.log(`You can't go ${direction} from here.`);
+        this.setResponse(`You can't go ${direction}.`);
     }
-  }
+}
 
-  setResponse(response) {
-    const gameResponseText = document.getElementById('gameresponse');
+setResponse(response) {
+    const gameResponseText = document.getElementById("gameresponse");
     gameResponseText.innerHTML = response;
-    gameResponseText.style.color = "red"
+}
 
-    // Set the colour to white (so the space remains)
-    setTimeout(() => {
-      gameResponseText.style.color = "#171717";
-    }, 1000);
-  }
+clearResponse() {
+    const gameResponseText = document.getElementById("gameresponse");
+    gameResponseText.innerHTML = "";
+}
 
   // Get current room
   get currentRoom() {
@@ -155,7 +157,7 @@ fight(game, enemy) {
     Math.max(
         1,
         this.getWeaponDamage() +
-        Math.floor(Math.random() * 5) -
+        40 -
         enemy._armor
     );
 
@@ -306,12 +308,12 @@ class Item {
 
 
 //////////////////////// ENEMIES ////////////////////////
-const follower = new Enemy('a cult follower', 'a follower of Pure Worship shambling around the room', '', 10, 30, 1);
-const drone = new Enemy('an drone', 'an drone whizzing around the room, sent by unknown person or faction', '', 20, 50, 5);
-const shaman = new Enemy('an shaman', 'an shaman of Pure Worship mixing potions, unaware of your presence', '', 20, 40, 3);
-const scavenger = new Enemy('a scavenger', 'a scavenger feasting on a corpse in the corner', '', 10, 30, 2);
-const gangMember = new Enemy('a gang member', 'a gang member armed with a knife and tattoed symbol of Syndicete', '', 10, 40, 4);
-const reverentFather = new Enemy('Reverent Father', 'Reverent Father sitting on the throne, scratching at the floor with a staff seemingly fused to his hand', '', 50, 80, 8);
+const follower = new Enemy('a cult follower', 'a follower of Pure Worship shambling around the room', '', 20, 40, 5);
+const drone = new Enemy('an drone', 'an drone whizzing around the room, sent by unknown person or faction', '', 50, 60, 10);
+const shaman = new Enemy('an shaman', 'an shaman of Pure Worship mixing potions, unaware of your presence', '', 40, 60, 9);
+const scavenger = new Enemy('a scavenger', 'a scavenger feasting on a corpse in the corner', '', 20, 40, 5);
+const gangMember = new Enemy('a gang member', 'a gang member armed with a knife and tattoed symbol of Syndicete', '', 30, 50, 8);
+const reverentFather = new Enemy('Reverent Father', 'Reverent Father sitting on the throne, scratching at the floor with a staff seemingly fused to his hand', '', 70, 200, 10);
 
 
 //////////////////////// ITEMS ////////////////////////
@@ -358,7 +360,16 @@ zabrheh.addPlayerOptions([
                 game.setResponse("Your inventory is empty.");
             } 
             else {
-                game.setResponse("Inventory: " + player._inventory.map(item => item.name).join(", "));
+                 player._inventory.forEach(item => {
+
+        inventoryText += `${item.name}`;
+
+        if (item.damage > 0)
+            inventoryText += ` (Damage: ${item.damage})`;
+
+        inventoryText += "<br>";
+		game.setResponse(inventoryText);
+    });
         }
     }  
 } 
@@ -387,7 +398,12 @@ vitkovice.addPlayerOptions([
                 game.setResponse("Your inventory is empty.");
             } 
             else {
-                game.setResponse("Inventory: " + player._inventory.map(item => item.name).join(", "));
+                 player._inventory.forEach(item => {
+        inventoryText += `${item.name}`;
+        if (item.damage > 0) inventoryText += ` (Damage: ${item.damage})`;
+        inventoryText += "<br>";
+		game.setResponse(inventoryText);
+    });
         }
     }  
 } 
@@ -428,7 +444,12 @@ privoz.addPlayerOptions([
                 game.setResponse("Your inventory is empty.");
             } 
             else {
-                game.setResponse("Inventory: " + player._inventory.map(item => item.name).join(", "));
+                 player._inventory.forEach(item => {
+        inventoryText += `${item.name}`;
+        if (item.damage > 0) inventoryText += ` (Damage: ${item.damage})`;
+        inventoryText += "<br>";
+		game.setResponse(inventoryText);
+    });
         }
     }  
 } 
@@ -468,7 +489,12 @@ karolina.addPlayerOptions([
                 game.setResponse("Your inventory is empty.");
             } 
             else {
-                game.setResponse("Inventory: " + player._inventory.map(item => item.name).join(", "));
+                 player._inventory.forEach(item => {
+        inventoryText += `${item.name}`;
+        if (item.damage > 0) inventoryText += ` (Damage: ${item.damage})`;
+        inventoryText += "<br>";
+		game.setResponse(inventoryText);
+    });
         }
     }  
 } 
@@ -501,7 +527,12 @@ svinov.addPlayerOptions([
                 game.setResponse("Your inventory is empty.");
             } 
             else {
-                game.setResponse("Inventory: " + player._inventory.map(item => item.name).join(", "));
+                 player._inventory.forEach(item => {
+        inventoryText += `${item.name}`;
+        if (item.damage > 0) inventoryText += ` (Damage: ${item.damage})`;
+        inventoryText += "<br>";
+		game.setResponse(inventoryText);
+    });
         }
     }  
 } 
@@ -535,7 +566,12 @@ dolni.addPlayerOptions([
                 game.setResponse("Your inventory is empty.");
             } 
             else {
-                game.setResponse("Inventory: " + player._inventory.map(item => item.name).join(", "));
+                 player._inventory.forEach(item => {
+        inventoryText += `${item.name}`;
+        if (item.damage > 0) inventoryText += ` (Damage: ${item.damage})`;
+        inventoryText += "<br>";
+		game.setResponse(inventoryText);
+    });
         }
     }  
 } 
@@ -575,7 +611,12 @@ stodolni.addPlayerOptions([
                 game.setResponse("Your inventory is empty.");
             } 
             else {
-                game.setResponse("Inventory: " + player._inventory.map(item => item.name).join(", "));
+                 player._inventory.forEach(item => {
+        inventoryText += `${item.name}`;
+        if (item.damage > 0) inventoryText += ` (Damage: ${item.damage})`;
+        inventoryText += "<br>";
+		game.setResponse(inventoryText);
+    });
         }
     }  
 } 
@@ -596,7 +637,7 @@ cityHall.addPlayerOptions([
             game._currentRoom.removePlayerOptions("Fight Reverent Father");
 	    setTimeout(()=>{
                 game._player.winGame();
-            },2000);
+            },10000);
         }
     }
 ]);
@@ -629,7 +670,7 @@ const option2 = document.getElementById("option2");
 const option3 = document.getElementById("option3");
 const option4 = document.getElementById("option4");
 
-let player = new Character('Player Name', 100, 5, []);
+let player = new Character('Player', 100, 5, []);
 let game = new Game(player, allRooms);
 
 
@@ -654,6 +695,8 @@ displayText.innerHTML =
  You see ${roomItems}.
  ${enemyText}`;
     document.getElementById("health").textContent = `Health: ${player._health}/100`;
+	document.getElementById("damage").textContent = `Damage: ${player._damage}`;
+	document.getElementById("armor").textContent = `Armor: ${player._armor}`;
   }
   displayRoom();
 
