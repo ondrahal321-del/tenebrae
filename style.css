@@ -157,7 +157,8 @@ button:hover{
 }
 
 #stats-contain{
-	display: flex
+	display: flex;
+	border: 2px solid black;
 }
 
 #damage{
