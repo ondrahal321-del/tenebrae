@@ -22,11 +22,13 @@ moveToRoom(direction) {
 setResponse(response) {
     const gameResponseText = document.getElementById("gameresponse");
     gameResponseText.innerHTML = response;
+	gameResponseText.style.color = "red"
 }
 
 clearResponse() {
     const gameResponseText = document.getElementById("gameresponse");
-    gameResponseText.innerHTML = "";
+    gameResponseText.innerHTML = response;
+	gameResponseText.style.color = "#171717";
 }
 
   // Get current room
