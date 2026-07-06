@@ -158,12 +158,14 @@ button:hover{
 
 #damage{
     margin-bottom: 10px;
-    color: black;
+    color: white;
+	float: right;
 }
 
 #armor{
     margin-bottom: 10px;
     color: blue;
+	float: right;
 }
 
 input[type=checkbox]{
