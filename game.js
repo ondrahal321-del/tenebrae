@@ -279,9 +279,9 @@ class Enemy {
     this._name = name;
     this._description = description;
     this._dialogue = dialogue;
-    this.getDamage() = damage;
+    this._damage = damage;
 	this._health = health;
-	this.getArmor() = armor;
+	this.armor = armor;
   }
 
   get name() {
