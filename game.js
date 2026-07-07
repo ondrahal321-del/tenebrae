@@ -241,10 +241,6 @@ this._health -= damageTaken;
     }
 }
 
-takeArmor(armor) {
-	player.getArmor() += 5;
-}
-
 loseGame() {
     const displayText = document.getElementById("displaytext");
     const optionTitle = document.getElementById("options");
@@ -313,9 +309,10 @@ class Enemy {
 }
 //////////////////////// ITEM CLASS ////////////////////////
 class Item {
-  constructor(name, damage) {
+  constructor(name, damage, armor) {
     this.name = name;
 	this.damage = damage;
+	this.armor = armor;
   }
 }
 
@@ -331,12 +328,12 @@ const reverentFather = new Enemy('Reverent Father', 'Reverent Father sitting on 
 
 
 //////////////////////// ITEMS ////////////////////////
-const crowbar = new Item("a rusty crowbar", 20);
-const flashlight = new Item("a working flashlight", 2);
+const crowbar = new Item("a rusty crowbar", 20, 0);
+const flashlight = new Item("a working flashlight", 2, 0);
 const firstAidKit = new Item("a first aid kit", 0);
-const rifle = new Item("a rifle AK-47", 50);
-const gasMask = new Item("a gas mask", 0);
-const gun = new Item("an old gun", 30);
+const rifle = new Item("a rifle AK-47", 50, 0);
+const gasMask = new Item("a gas mask", 0, 20);
+const gun = new Item("an old gun", 30, 0);
 
 //////////////////////// ROOMS ////////////////////////
 
@@ -363,7 +360,6 @@ zabrheh.addPlayerOptions([
         text:"Fight the scavenger",
         action:(game)=>{
             game._player.fight(game,game._currentRoom._enemies[0]);
-            game._currentRoom.removePlayerOptions("Fight the scavenger");
         }
     },
     {
@@ -400,7 +396,6 @@ vitkovice.addEnemy(drone);
 vitkovice.addPlayerOptions([
     {input:1,text:"Fight the drone",action:(game)=>{
         game._player.fight(game,game._currentRoom._enemies[0]);
-        game._currentRoom.removePlayerOptions("Fight the drone");
     }},
     {input:2,text:"Travel east to Nová Karolina",action:(game)=>game.moveToRoom("east")},
     {input:3,text:"Travel west to Přívoz",action:(game)=>game.moveToRoom("west")},
@@ -447,7 +442,6 @@ privoz.addPlayerOptions([
         text:"Fight the gang member",
         action:(game)=>{
             game._player.fight(game,game._currentRoom._enemies[0]);
-            game._currentRoom.removePlayerOptions("Fight the gang member");
         }
     },
     {input:3,text:"Travel north to Svinov",action:(game)=>game.moveToRoom("north")},
@@ -493,7 +487,6 @@ karolina.addPlayerOptions([
         text:"Fight the cult follower",
         action:(game)=>{
             game._player.fight(game,game._currentRoom._enemies[0]);
-            game._currentRoom.removePlayerOptions("Fight the cult follower");
         }
     },
     {input:3,text:"Travel north to Dolní Vítkovice",action:(game)=>game.moveToRoom("north")},
@@ -619,7 +612,6 @@ stodolni.addPlayerOptions([
         text:"Fight the shaman",
         action:(game)=>{
             game._player.fight(game,game._currentRoom._enemies[0]);
-            game._currentRoom.removePlayerOptions("Fight the shaman");
         }
     },
     {input:3,text:"Travel south to Dolní Vítkovice",action:(game)=>game.moveToRoom("south")},
@@ -655,7 +647,6 @@ cityHall.addPlayerOptions([
         text:"Fight Reverent Father",
         action:(game)=>{
             game._player.fight(game,game._currentRoom._enemies[0]);
-            game._currentRoom.removePlayerOptions("Fight Reverent Father");
 	    setTimeout(()=>{
                 game._player.winGame();
             },10000);
