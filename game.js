@@ -192,8 +192,11 @@ async fight(game, enemy) {
         battleLog += "<br>You won!";
         game._currentRoom.removeEnemy(enemy);
 
-    } else {
-        battleLog += "<br>You died.";
+    } 
+	if (this._health <= 0) {
+        battleLog += "<br>You died!";
+        this.loseGame();
+
     }
     game.setResponse(battleLog);
 }
