@@ -191,6 +191,10 @@ async fight(game, enemy) {
     }
 	console.log(this.getDamage());
 	console.log(this.getArmor());
+	console.log(enemy._damage);
+	console.log(enemy._armor);
+	console.log(playerDamage);
+	console.log(enemyDamage);
     if (enemy._health <= 0) {
         battleLog += "<br>You won!";
         game._currentRoom.removeEnemy(enemy);
