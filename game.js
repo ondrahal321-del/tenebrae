@@ -132,67 +132,71 @@ class Character {
       constructor(name, health, damage, armor, inventory) {
         this._name = name;
         this._health = health;
-		this._damage = damage;
-        this._armor = armor;
+		this.getDamage() = damage;
+        this.getArmor() = armor;
         this._inventory = inventory;
     }
 
     getWeaponDamage() {
         let highest = 5; // fists
-
         this._inventory.forEach(item => {
             if (item.damage > highest)
                 highest = item.damage;
         });
-
         return highest;
     }
 
+		getDamage() {
+    let damage = this._damage();
+    this._inventory.forEach(item => {
+        if (item.damage)
+            damage += item.damage;
+    });
+    return damage;
+}
+
+getArmor() {
+    let armor = this._rrmor();
+    this._inventory.forEach(item => {
+        if (item.armor)
+            armor += item.armor;
+    });
+    return armor;
+}
 
   addItem(game, item) {
     this._inventory.push(item);
     game.setResponse(`You picked up ${item.name}.`)
   }
 
-fight(game, enemy) {
-while (this._health > 0 && enemy._health > 0) {
-    const playerDamage =
-    Math.max(
-        1,
-        this.getWeaponDamage() +
-        this._damage -
-        enemy._armor
-    );
-
-    enemy._health -= playerDamage;
-
-    if(enemy._health <= 0){
-
-        game.setResponse(
-            `You killed ${enemy._name}!`
-        );
-
-        return;
+async fight(game, enemy) {
+    let battleLog = "";
+    while (this._health > 0 && enemy._health > 0) {
+        const playerDamage =
+            Math.max(1, this.getDamage() - enemy._armor);
+        enemy._health -= playerDamage;
+        battleLog += `You hit ${enemy._name} for ${playerDamage}.<br>`;
+        game.setResponse(battleLog);
+        updateUI();
+        await new Promise(resolve => setTimeout(resolve, 600));
+        if (enemy._health <= 0) break;
+        const enemyDamage =
+            Math.max(1, enemy._damage - this.getArmor());
+        this._health -= enemyDamage;
+        battleLog += `${enemy._name} hits you for ${enemyDamage}.<br>`;
+        game.setResponse(battleLog);
+        updateUI();
+        await new Promise(resolve => setTimeout(resolve, 600));
     }
+    if (enemy._health <= 0) {
+        battleLog += "<br>You won!";
+        game._currentRoom.removeEnemy(enemy);
 
-    let enemyDamage =
-        Math.max(
-            1,
-            enemy._damage - this._armor
-        );
-
-    this._health -= enemyDamage;
-
-    game.setResponse(
-        `You dealt ${playerDamage} damage,
-        ${enemy._name} dealt ${enemyDamage}.<br>
-        
-        HP:
-        You ${this._health}
-        Enemy ${enemy._health}`
-    );
-
-}}
+    } else {
+        battleLog += "<br>You died.";
+    }
+    game.setResponse(battleLog);
+}
 
   winGame() {
     const displayText = document.getElementById("displaytext");
@@ -218,7 +222,7 @@ while (this._health > 0 && enemy._health > 0) {
 
 takeDamage(amount, armor) {
     let damageTaken =
-    enemy._damage - this._armor;
+    enemy.getDamage() - this.getArmor();
 
 if (damageTaken < 1)
     damageTaken = 1;
@@ -232,7 +236,7 @@ this._health -= damageTaken;
 }
 
 takeArmor(armor) {
-	player._armor += 5;
+	player.getArmor() += 5;
 }
 
 loseGame() {
@@ -266,6 +270,7 @@ heal(game, amount) {
     );
 }
 
+
 }
 
 //////////////////////// ENEMY CLASS ////////////////////////
@@ -274,9 +279,9 @@ class Enemy {
     this._name = name;
     this._description = description;
     this._dialogue = dialogue;
-    this._damage = damage;
+    this.getDamage() = damage;
 	this._health = health;
-	this._armor = armor;
+	this.getArmor() = armor;
   }
 
   get name() {
@@ -292,11 +297,11 @@ class Enemy {
   }
 
  get damage() {
-        return this._damage;
+        return this.getDamage();
     }
 
     takeDamage(enemy) {
-    let damage = Math.max(1, enemy.damage - this._armor);
+    let damage = Math.max(1, enemy.damage - this.getArmor());
     this._health -= damage;
 }
 }
@@ -705,8 +710,8 @@ displayText.innerHTML =
  You see ${roomItems}.
  ${enemyText}`;
     document.getElementById("health").textContent = `Health: ${player._health}/100`;
-	document.getElementById("damage").textContent = `Damage: ${player._damage}`;
-	document.getElementById("armor").textContent = `Armor: ${player._armor}`;
+	document.getElementById("damage").textContent = `Damage: ${player.getDamage()}`;
+	document.getElementById("armor").textContent = `Armor: ${player.getArmor()}`;
   }
   displayRoom();
 
