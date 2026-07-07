@@ -132,8 +132,8 @@ class Character {
       constructor(name, health, damage, armor, inventory) {
         this._name = name;
         this._health = health;
-		this.getDamage() = damage;
-        this.getArmor() = armor;
+		this._damage = damage;
+        this._damage = armor;
         this._inventory = inventory;
     }
 
@@ -156,7 +156,7 @@ class Character {
 }
 
 getArmor() {
-    let armor = this._rrmor();
+    let armor = this._armor();
     this._inventory.forEach(item => {
         if (item.armor)
             armor += item.armor;
