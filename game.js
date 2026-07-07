@@ -147,7 +147,7 @@ class Character {
     }
 
 		getDamage() {
-    let damage = this._damage();
+    let damage = this._damage;
     this._inventory.forEach(item => {
         if (item.damage)
             damage += item.damage;
@@ -156,7 +156,7 @@ class Character {
 }
 
 getArmor() {
-    let armor = this._armor();
+    let armor = this._armor;
     this._inventory.forEach(item => {
         if (item.armor)
             armor += item.armor;
