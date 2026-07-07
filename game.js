@@ -155,7 +155,7 @@ class Character {
   }
 
 fight(game, enemy) {
-
+while (this._health > 0 && enemy._health > 0) {
     const playerDamage =
     Math.max(
         1,
@@ -192,7 +192,7 @@ fight(game, enemy) {
         Enemy ${enemy._health}`
     );
 
-}
+}}
 
   winGame() {
     const displayText = document.getElementById("displaytext");
