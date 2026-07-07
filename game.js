@@ -133,7 +133,7 @@ class Character {
         this._name = name;
         this._health = health;
 		this._damage = damage;
-        this._damage = armor;
+        this._armor = armor;
         this._inventory = inventory;
     }
 
