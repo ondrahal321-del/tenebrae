@@ -354,6 +354,7 @@ zabrheh.addPlayerOptions([
         text:"Fight the scavenger",
         action:(game)=>{
             game._player.fight(game,game._currentRoom._enemies[0]);
+			game._currentRoom.removePlayerOptions("Fight the scavenger");
         }
     },
     {
@@ -436,6 +437,7 @@ privoz.addPlayerOptions([
         text:"Fight the gang member",
         action:(game)=>{
             game._player.fight(game,game._currentRoom._enemies[0]);
+			game._currentRoom.removePlayerOptions("Fight the gang member");
         }
     },
     {input:3,text:"Travel north to Svinov",action:(game)=>game.moveToRoom("north")},
@@ -481,6 +483,7 @@ karolina.addPlayerOptions([
         text:"Fight the cult follower",
         action:(game)=>{
             game._player.fight(game,game._currentRoom._enemies[0]);
+			game._currentRoom.removePlayerOptions("Fight the cult follower");
         }
     },
     {input:3,text:"Travel north to Dolní Vítkovice",action:(game)=>game.moveToRoom("north")},
@@ -606,6 +609,7 @@ stodolni.addPlayerOptions([
         text:"Fight the shaman",
         action:(game)=>{
             game._player.fight(game,game._currentRoom._enemies[0]);
+			game._currentRoom.removePlayerOptions("Fight the shaman");
         }
     },
     {input:3,text:"Travel south to Dolní Vítkovice",action:(game)=>game.moveToRoom("south")},
@@ -641,9 +645,9 @@ cityHall.addPlayerOptions([
         text:"Fight Reverent Father",
         action:(game)=>{
             game._player.fight(game,game._currentRoom._enemies[0]);
-	    setTimeout(()=>{
-                game._player.winGame();
-            },10000);
+		if(player._health<=0){
+			game._player.winGame();	
+		}
         }
     }
 ]);
