@@ -210,7 +210,6 @@ async fight(game, enemy) {
     const option3 = document.getElementById("option3");
     const option4 = document.getElementById("option4");
     const health = document.getElementById("health");
-	const health = document.getElementById("health");
 	const damage = document.getElementById("damage");
 	const armor = document.getElementById("armor");
 	const gameResponseText = document.getElementById("gameresponse");
