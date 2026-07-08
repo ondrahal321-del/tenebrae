@@ -172,8 +172,7 @@ getArmor() {
 async fight(game, enemy) {
     let battleLog = "";
     while (this._health > 0 && enemy._health > 0) {
-        const playerDamage =
-            Math.max(1, this.getDamage() - enemy._armor);
+        const playerDamage = Math.max(1, this.getDamage() - enemy._armor);
         enemy._health -= playerDamage;
         battleLog += `You hit ${enemy._name} for ${playerDamage}.<br>`;
         game.setResponse(battleLog);
@@ -195,6 +194,7 @@ async fight(game, enemy) {
 	console.log(enemy._armor);
 	console.log(playerDamage);
 	console.log(enemyDamage);
+	console.log(Math.max(1, this.getDamage() - enemy._armor));
     if (enemy._health <= 0) {
         battleLog += "<br>You won!";
         game._currentRoom.removeEnemy(enemy);
