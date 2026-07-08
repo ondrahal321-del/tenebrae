@@ -749,7 +749,7 @@ displayText.innerHTML =
 
 updateUI();
 let gamearea = document.getElementById('gamearea');
-containeri.style.visibility = "gamearea";
+gamearea.style.visibility = "gamearea";
 // Handles the user input and runs the selected option (1, 2, 3, 4, 5)
 function userInput() {
   let inputField = document.getElementById('userInput');
