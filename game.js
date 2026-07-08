@@ -212,6 +212,7 @@ async fight(game, enemy) {
     const health = document.getElementById("health");
 	const damage = document.getElementById("damage");
 	const armor = document.getElementById("armor");
+	const input = document.getElementById("userInput");
 	const gameResponseText = document.getElementById("gameresponse");
     // Clear the options
     optionTitle.innerHTML = "";
