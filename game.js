@@ -188,13 +188,8 @@ async fight(game, enemy) {
         await new Promise(resolve => setTimeout(resolve, 600));
 		if (this._health <= 0) break;
     }
-	console.log(this.getDamage());
-	console.log(this.getArmor());
-	console.log(enemy._damage);
-	console.log(enemy._armor);
-	console.log(playerDamage);
-	console.log(enemyDamage);
-	console.log(Math.max(1, this.getDamage() - enemy._armor));
+	console.log(enemy._health);
+	console.log(this._health);
     if (enemy._health <= 0) {
         battleLog += "<br>You won!";
         game._currentRoom.removeEnemy(enemy);
