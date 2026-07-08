@@ -188,8 +188,6 @@ async fight(game, enemy) {
         await new Promise(resolve => setTimeout(resolve, 600));
 		if (this._health <= 0) break;
     }
-	console.log(enemy._health);
-	console.log(this._health);
     if (enemy._health <= 0) {
         battleLog += "<br>You won!";
         game._currentRoom.removeEnemy(enemy);
@@ -212,6 +210,7 @@ async fight(game, enemy) {
     const option4 = document.getElementById("option4");
     const health = document.getElementById("health");
 	const input = document.getElementById("userInput");
+	const gameResponseText = document.getElementById("gameresponse");
     // Clear the options
     optionTitle.innerHTML = "";
     option1.innerHTML = "";
@@ -220,7 +219,8 @@ async fight(game, enemy) {
     option4.innerHTML = "";
     health.innerHTML = "";
 	input.style.visibility="hidden";
-
+	gameResponseText.innerHTML = "";
+	
     // Display the win message
     displayText.innerHTML = `<h3>You win</h3>You defeated main threat in the city and folllowers of Pure Worship has been scattered. But remember: There are many threats still hidden...  <button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
   }
@@ -249,6 +249,7 @@ loseGame() {
     const option4 = document.getElementById("option4");
     const health = document.getElementById("health");
 	const input = document.getElementById("userInput");
+	const gameResponseText = document.getElementById("gameresponse");
     // Clear the options
     optionTitle.innerHTML = "";
     option1.innerHTML = "";
@@ -257,7 +258,7 @@ loseGame() {
     option4.innerHTML = "";
     health.innerHTML = "";
 	input.style.visibility="hidden";
-
+	gameResponseText.innerHTML = "";
     // Display the win message
     displayText.innerHTML = `<h3>You died</h3><button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
 }
@@ -391,6 +392,7 @@ vitkovice.addEnemy(drone);
 vitkovice.addPlayerOptions([
     {input:1,text:"Fight the drone",action:(game)=>{
         game._player.fight(game,game._currentRoom._enemies[0]);
+		game._currentRoom.removePlayerOptions("Fight the drone");
     }},
     {input:2,text:"Travel east to Nová Karolina",action:(game)=>game.moveToRoom("east")},
     {input:3,text:"Travel west to Přívoz",action:(game)=>game.moveToRoom("west")},
@@ -645,7 +647,7 @@ cityHall.addPlayerOptions([
         text:"Fight Reverent Father",
         action:(game)=>{
             game._player.fight(game,game._currentRoom._enemies[0]);
-		if(player._health<=0){
+		if(player._health>0){
 			game._player.winGame();	
 		}
         }
