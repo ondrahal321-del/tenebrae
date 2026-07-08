@@ -195,6 +195,7 @@ async fight(game, enemy) {
     } 
 	if (this._health <= 0) {
         battleLog += "<br>You died!";
+		game.clearResponse(battleLog);
         this.loseGame();
 
     }
@@ -220,6 +221,7 @@ async fight(game, enemy) {
     health.innerHTML = "";
 	input.style.visibility="hidden";
 	gameResponseText.innerHTML = "";
+	gameResponseText.style.color = "#171717";
 	
     // Display the win message
     displayText.innerHTML = `<h3>You win</h3>You defeated main threat in the city and folllowers of Pure Worship has been scattered. But remember: There are many threats still hidden...  <button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
@@ -259,6 +261,7 @@ loseGame() {
     health.innerHTML = "";
 	input.style.visibility="hidden";
 	gameResponseText.innerHTML = "";
+	gameResponseText.style.color = "#171717";
     // Display the win message
     displayText.innerHTML = `<h3>You died</h3><button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
 }
@@ -648,6 +651,7 @@ cityHall.addPlayerOptions([
         action:(game)=>{
             game._player.fight(game,game._currentRoom._enemies[0]);
 		if(player._health>0){
+			game.clearResponse("");
 			game._player.winGame();	
 		}
         }
