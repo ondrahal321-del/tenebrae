@@ -60,6 +60,11 @@ h2{
     color:#BFBFBF;
 }
 
+h3{
+	margin: 15px 0px;
+	text-align: center;
+}
+
 .panel:not(.panelMenu){
     background:#171717;
     border:2px solid #454545;
