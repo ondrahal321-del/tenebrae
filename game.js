@@ -658,8 +658,8 @@ cityHall.addPlayerOptions([
         text:"Fight Reverent Father",
         action:(game)=>{
             game._player.fight(game,game._currentRoom._enemies[0]);
-		if(player._health>0){
-			game.clearResponse("");
+		if(player._health > 0){
+			//game.clearResponse("");
 			game._player.winGame();	
 		}
         }
