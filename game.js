@@ -655,16 +655,16 @@ const cityHall = new Room(
 cityHall.addEnemy(reverentFather);
 cityHall.addPlayerOptions([
 {
-        input:1,
-        text:"Fight Reverent Father",
-        action:(game)=>{
-            game._player.fight(game,game._currentRoom._enemies[0]);
-		if(player._health > 0){
-			game.clearResponse("");
-			game._player.winGame();	
-		}
+    input: 1,
+    text: "Fight Reverent Father",
+    action: async (game) => {
+        await game._player.fight(game, game._currentRoom._enemies[0]);
+        if (player._health > 0) {
+            game.clearResponse();
+            game._player.winGame();
         }
     }
+}
 ]);
 
 ///// Link rooms together
@@ -748,7 +748,7 @@ displayText.innerHTML =
 }
 
 updateUI();
-
+document.getElementById("containeri").style.visibility = "visible";
 // Handles the user input and runs the selected option (1, 2, 3, 4, 5)
 function userInput() {
   let inputField = document.getElementById('userInput');
