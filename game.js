@@ -186,7 +186,7 @@ async fight(game, enemy) {
         game.setResponse(battleLog);
         updateUI();
         await new Promise(resolve => setTimeout(resolve, 600));
-		if (enemy._health <= 0) break;
+		if (this._health <= 0) break;
     }
 	console.log(this.getDamage());
 	console.log(this.getArmor());
@@ -287,7 +287,7 @@ class Enemy {
     this._dialogue = dialogue;
     this._damage = damage;
 	this._health = health;
-	this.armor = armor;
+	this._armor = armor;
   }
 
   get name() {
@@ -303,13 +303,8 @@ class Enemy {
   }
 
  get damage() {
-        return this.getDamage();
+        return this._damage;
     }
-
-    takeDamage(enemy) {
-    let damage = Math.max(1, enemy.damage - this.getArmor());
-    this._health -= damage;
-}
 }
 //////////////////////// ITEM CLASS ////////////////////////
 class Item {
