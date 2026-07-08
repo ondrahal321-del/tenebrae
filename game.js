@@ -748,7 +748,8 @@ displayText.innerHTML =
 }
 
 updateUI();
-document.getElementById("containeri").style.visibility = "visible";
+let containeri = document.getElementById('containeri');
+containeri.style.visibility = "visible";
 // Handles the user input and runs the selected option (1, 2, 3, 4, 5)
 function userInput() {
   let inputField = document.getElementById('userInput');
