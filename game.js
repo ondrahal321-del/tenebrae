@@ -210,7 +210,9 @@ async fight(game, enemy) {
     const option3 = document.getElementById("option3");
     const option4 = document.getElementById("option4");
     const health = document.getElementById("health");
-	const input = document.getElementById("userInput");
+	const health = document.getElementById("health");
+	const damage = document.getElementById("damage");
+	const armor = document.getElementById("armor");
 	const gameResponseText = document.getElementById("gameresponse");
     // Clear the options
     optionTitle.innerHTML = "";
@@ -219,10 +221,12 @@ async fight(game, enemy) {
     option3.innerHTML = "";
     option4.innerHTML = "";
     health.innerHTML = "";
+	damage.innerHTML = "";
+	armor.innerHTML = "";
 	input.style.visibility="hidden";
 	gameResponseText.innerHTML = "";
 	gameResponseText.style.color = "#171717";
-	
+	gameResponseText.style.visibility="hidden";
     // Display the win message
     displayText.innerHTML = `<h3>You win</h3>You defeated main threat in the city and folllowers of Pure Worship has been scattered. But remember: There are many threats still hidden...  <button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
   }
@@ -250,6 +254,8 @@ loseGame() {
     const option3 = document.getElementById("option3");
     const option4 = document.getElementById("option4");
     const health = document.getElementById("health");
+	const damage = document.getElementById("damage");
+	const armor = document.getElementById("armor");
 	const input = document.getElementById("userInput");
 	const gameResponseText = document.getElementById("gameresponse");
     // Clear the options
@@ -259,9 +265,12 @@ loseGame() {
     option3.innerHTML = "";
     option4.innerHTML = "";
     health.innerHTML = "";
+	damage.innerHTML = "";
+	armor.innerHTML = "";
 	input.style.visibility="hidden";
 	gameResponseText.innerHTML = "";
 	gameResponseText.style.color = "#171717";
+	gameResponseText.style.visibility="hidden";
     // Display the win message
     displayText.innerHTML = `<h3>You died</h3><button id="buttonMenu" onclick="location.href='index.html'">Return to Menu</button>`;
 }
